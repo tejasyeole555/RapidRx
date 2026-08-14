@@ -91,3 +91,15 @@ RapidRx
 ├── pom.xml
 ├── .gitignore
 └── README.md
+
+## Save the file
+
+Your structure should now include:
+
+```text
+E:\RapidRx
+│
+├── README.md  ✅
+├── pom.xml
+├── src
+└── .gitignore
