@@ -1,14 +1,14 @@
-# Maven
+# Maven build files
 target/
 
-# IDE
+# IDE files
 .vscode/
 .idea/
 *.iml
 
-# Java
+# Java compiled files
 *.class
 
-# OS
+# OS files
 .DS_Store
 Thumbs.db
