@@ -65,6 +65,7 @@ The application also includes an Admin Module for managing medicines, monitoring
 * HTML
 * CSS
 * JSP
+<<<<<<< HEAD
 
 ## 📸 Screenshots
 
@@ -100,6 +101,8 @@ The application also includes an Admin Module for managing medicines, monitoring
 
 ![Low Stock Alert](screenshots/low-stock.png)
 
+=======
+>>>>>>> 5257d444d5cba4c9277a421aaa4a9154120b35af
 
 ### Database
 
