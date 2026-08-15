@@ -126,3 +126,289 @@ ul {
 .logout-card {
     border-color: #e0b4b4;
 }
+
+/* ================================
+   ADMIN DASHBOARD STATISTICS
+================================ */
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin: 20px 0 30px;
+}
+
+.stat-card {
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card h3 {
+    margin: 0 0 12px;
+    font-size: 17px;
+}
+
+.stat-card .number {
+    font-size: 30px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+/* ================================
+   ADMIN DASHBOARD MENU
+================================ */
+
+.admin-menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+}
+
+.admin-menu li {
+    margin: 0;
+}
+
+.admin-menu a {
+    display: block;
+    padding: 16px 20px;
+    background: #f8fafc;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.admin-menu a:hover {
+    text-decoration: none;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+
+@media (max-width: 800px) {
+
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin-menu {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ================================
+   USER DASHBOARD
+================================ */
+
+.dashboard-header {
+    margin-bottom: 25px;
+}
+
+.dashboard-header h1 {
+    margin-bottom: 10px;
+}
+
+.dashboard-header p {
+    color: #666;
+    font-size: 16px;
+    margin: 0;
+}
+
+.dashboard-menu {
+    margin-top: 20px;
+}
+
+.dashboard-card {
+    min-height: 150px;
+}
+
+.dashboard-card h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.dashboard-card p {
+    line-height: 1.5;
+}
+
+.logout-card {
+    border-color: #e0b4b4;
+}
+
+.logout-card h3 {
+    color: #b91c1c;
+}
+
+/* ================================
+   MEDICINE STORE UI
+================================ */
+
+.medicine-header {
+    margin-bottom: 25px;
+}
+
+.medicine-header h1 {
+    margin-bottom: 8px;
+}
+
+.medicine-header p {
+    color: #666;
+    font-size: 16px;
+}
+
+.search-section {
+    padding: 20px;
+    background: #f8fafc;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.search-section h3 {
+    margin-top: 0;
+}
+
+.search-form {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.search-form input,
+.search-form select {
+    margin: 0;
+}
+
+.search-form input {
+    flex: 2;
+}
+
+.search-form select {
+    flex: 1;
+}
+
+.search-btn {
+    background: #2563eb;
+    color: white;
+    white-space: nowrap;
+}
+
+.clear-btn,
+.back-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: white;
+    white-space: nowrap;
+}
+
+.clear-btn:hover,
+.back-btn:hover {
+    text-decoration: none;
+}
+
+.medicine-table-container {
+    overflow-x: auto;
+}
+
+.medicine-table th {
+    background: #2c3e50;
+    color: white;
+}
+
+.medicine-table tr:hover {
+    background: #f8fafc;
+}
+
+.category-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #e9eef5;
+    border-radius: 15px;
+    font-size: 13px;
+}
+
+.stock-available,
+.stock-low,
+.stock-out {
+    font-weight: bold;
+}
+
+.stock-available {
+    color: #15803d;
+}
+
+.stock-low {
+    color: #b45309;
+}
+
+.stock-out {
+    color: #b91c1c;
+}
+
+.cart-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #2563eb;
+    color: white;
+    border-radius: 5px;
+}
+
+.cart-btn:hover {
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+.disabled-cart {
+    color: #999;
+    font-weight: bold;
+}
+
+.no-results {
+    text-align: center;
+    padding: 25px;
+    color: #666;
+}
+
+.medicine-footer {
+    margin-top: 25px;
+}
+
+@media (max-width: 700px) {
+
+    .search-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-form input,
+    .search-form select,
+    .search-btn,
+    .clear-btn {
+        width: 100%;
+    }
+}

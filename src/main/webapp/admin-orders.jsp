@@ -10,6 +10,9 @@
 
     List<Order> orders =
             (List<Order>) request.getAttribute("orders");
+
+    String message = request.getParameter("message");
+    String error = request.getParameter("error");
 %>
 
 <!DOCTYPE html>
@@ -18,14 +21,34 @@
     <title>RapidRx - All Orders</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
+<body>
+
 <div class="container">
-    <body>
 
     <h1>All Customer Orders</h1>
 
     <a href="admin-dashboard.jsp">Back to Dashboard</a>
 
     <br><br>
+
+    <% if ("statusUpdated".equals(message)) { %>
+        <p style="color:green;">
+            Order status updated successfully!
+        </p>
+    <% } %>
+
+    <% if ("updateFailed".equals(error)) { %>
+        <p style="color:red;">
+            Failed to update order status.
+        </p>
+    <% } %>
+
+    <% if ("invalid".equals(error)) { %>
+        <p style="color:red;">
+            Invalid order update request.
+        </p>
+    <% } %>
 
     <table border="1" cellpadding="10">
 
@@ -37,6 +60,7 @@
             <th>Order Status</th>
             <th>Payment Method</th>
             <th>Payment Status</th>
+            <th>Update Status</th>
         </tr>
 
         <%
@@ -52,6 +76,57 @@
             <td><%= order.getStatus() %></td>
             <td><%= order.getPaymentMethod() %></td>
             <td><%= order.getPaymentStatus() %></td>
+
+            <td>
+                <form action="update-order-status" method="post">
+
+                    <input type="hidden"
+                           name="orderId"
+                           value="<%= order.getId() %>">
+
+                    <select name="status">
+
+                        <option value="PLACED"
+                            <%= "PLACED".equalsIgnoreCase(order.getStatus())
+                                ? "selected" : "" %>>
+                            PLACED
+                        </option>
+
+                        <option value="CONFIRMED"
+                            <%= "CONFIRMED".equalsIgnoreCase(order.getStatus())
+                                ? "selected" : "" %>>
+                            CONFIRMED
+                        </option>
+
+                        <option value="PROCESSING"
+                            <%= "PROCESSING".equalsIgnoreCase(order.getStatus())
+                                ? "selected" : "" %>>
+                            PROCESSING
+                        </option>
+
+                        <option value="OUT FOR DELIVERY"
+                            <%= "OUT FOR DELIVERY".equalsIgnoreCase(order.getStatus())
+                                ? "selected" : "" %>>
+                            OUT FOR DELIVERY
+                        </option>
+
+                        <option value="DELIVERED"
+                            <%= "DELIVERED".equalsIgnoreCase(order.getStatus())
+                                ? "selected" : "" %>>
+                            DELIVERED
+                        </option>
+
+                    </select>
+
+                    <br><br>
+
+                    <button type="submit">
+                        Update
+                    </button>
+
+                </form>
+            </td>
+
         </tr>
 
         <%
@@ -60,7 +135,7 @@
         %>
 
         <tr>
-            <td colspan="7">No orders found.</td>
+            <td colspan="8">No orders found.</td>
         </tr>
 
         <%
@@ -69,6 +144,7 @@
 
     </table>
 
-    </body>
 </div>
+
+</body>
 </html>

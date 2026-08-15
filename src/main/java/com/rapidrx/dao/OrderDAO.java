@@ -1,5 +1,4 @@
 package com.rapidrx.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +7,6 @@ import java.util.List;
 
 import com.rapidrx.model.CartItem;
 import com.rapidrx.util.DBConnection;
-
 public class OrderDAO {
 
     public int createOrder(int userId,
@@ -59,9 +57,20 @@ public class OrderDAO {
                     "VALUES (?, ?, ?, ?, ?, ?)";
 
             itemPs = con.prepareStatement(itemSql);
+            MedicineDAO medicineDAO = new MedicineDAO();
 
             for (CartItem item : cart) {
 
+                // Reduce medicine stock
+                boolean stockUpdated = medicineDAO.reduceStock(con,item.getMedicineId(),item.getQuantity());
+
+                // Stop order if sufficient stock is not available
+                if (!stockUpdated) {
+                    con.rollback();
+                    return 0;
+                }
+
+                // Add order item
                 itemPs.setInt(1, orderId);
                 itemPs.setInt(2, item.getMedicineId());
                 itemPs.setString(3, item.getMedicineName());
@@ -244,6 +253,44 @@ public class OrderDAO {
     }
 
     return orders;
+    }
+
+    public boolean updateOrderStatus(int orderId, String status) {
+
+    String sql = "UPDATE orders SET status = ? WHERE id = ?";
+
+    try (Connection con = DBConnection.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setString(1, status);
+        ps.setInt(2, orderId);
+
+        return ps.executeUpdate() > 0;
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return false;
+    }
+
+    public int getTotalOrders() {
+
+    String sql = "SELECT COUNT(*) FROM orders";
+
+    try (Connection con = DBConnection.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+        if (rs.next()) {
+            return rs.getInt(1);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return 0;
     }
 
 }

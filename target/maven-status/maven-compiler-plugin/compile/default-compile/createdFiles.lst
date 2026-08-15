@@ -1,5 +1,6 @@
 com\rapidrx\Controller\AdminOrderServlet.class
 com\rapidrx\model\Order.class
+com\rapidrx\Controller\UpdateOrderStatusServlet.class
 com\rapidrx\Controller\MedicineServlet.class
 com\rapidrx\model\CartItem.class
 com\rapidrx\Controller\PaymentServlet.class
@@ -17,12 +18,16 @@ com\rapidrx\TestRegister.class
 com\rapidrx\model\User.class
 com\rapidrx\Controller\ConfirmPaymentServlet.class
 com\rapidrx\util\DBConnection.class
+com\rapidrx\Controller\LowStockServlet.class
 com\rapidrx\Controller\RegisterServlet.class
 com\rapidrx\model\Admin.class
 com\rapidrx\Controller\DeleteMedicineServlet.class
 com\rapidrx\Controller\OnlinePaymentServlet.class
+com\rapidrx\Controller\EditMedicineServlet.class
 com\rapidrx\Controller\OrderDetailsServlet.class
 com\rapidrx\Controller\AdminLoginServlet.class
+com\rapidrx\Controller\SearchMedicineServlet.class
 com\rapidrx\Controller\AdminMedicineServlet.class
 com\rapidrx\Controller\CartServlet.class
+com\rapidrx\Controller\AdminDashboardServlet.class
 com\rapidrx\Controller\PrescriptionUploadServlet.class

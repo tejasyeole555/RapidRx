@@ -34,10 +34,13 @@ public class CartServlet extends HttpServlet {
 
         if ("add".equals(action)) {
             addToCart(request, response);
+
         } else if ("remove".equals(action)) {
             removeFromCart(request, response);
+
         } else if ("update".equals(action)) {
             updateCart(request, response);
+
         } else {
             response.sendRedirect("cart.jsp");
         }
@@ -52,8 +55,15 @@ public class CartServlet extends HttpServlet {
 
         Medicine medicine = medicineDAO.getMedicineById(medicineId);
 
+        // Check medicine exists
         if (medicine == null) {
             response.sendRedirect("medicines");
+            return;
+        }
+
+        // Prevent adding out-of-stock medicine
+        if (medicine.getStock() <= 0) {
+            response.sendRedirect("medicines?error=outofstock");
             return;
         }
 
@@ -72,7 +82,11 @@ public class CartServlet extends HttpServlet {
 
             if (item.getMedicineId() == medicineId) {
 
-                item.setQuantity(item.getQuantity() + 1);
+                // Prevent cart quantity from exceeding stock
+                if (item.getQuantity() < medicine.getStock()) {
+                    item.setQuantity(item.getQuantity() + 1);
+                }
+
                 found = true;
                 break;
             }
@@ -128,6 +142,14 @@ public class CartServlet extends HttpServlet {
         int quantity = Integer.parseInt(
                 request.getParameter("quantity"));
 
+        // Get latest medicine stock from database
+        Medicine medicine = medicineDAO.getMedicineById(medicineId);
+
+        if (medicine == null) {
+            response.sendRedirect("cart.jsp");
+            return;
+        }
+
         HttpSession session = request.getSession();
 
         List<CartItem> cart =
@@ -139,13 +161,17 @@ public class CartServlet extends HttpServlet {
 
                 if (item.getMedicineId() == medicineId) {
 
-                    if (quantity > 0) {
+                    if (quantity > 0 &&
+                        quantity <= medicine.getStock()) {
+
                         item.setQuantity(quantity);
                     }
 
                     break;
                 }
             }
+
+            session.setAttribute("cart", cart);
         }
 
         response.sendRedirect("cart.jsp");
