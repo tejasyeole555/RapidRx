@@ -51,6 +51,41 @@ The application allows users to register, login, browse medicines, add medicines
 - CSS
 - JSP
 
+## 📸 Screenshots
+
+### 🏠 User Dashboard
+
+![User Dashboard](screenshots/user-dashboard.png)
+
+### 💊 Medicine Store
+
+![Medicine Store](screenshots/medicine-store.png)
+
+### 🛒 Shopping Cart
+
+![Shopping Cart](screenshots/cart.png)
+
+### 📦 Order History
+
+![Order History](screenshots/order-history.png)
+
+### 👨‍💼 Admin Dashboard
+
+![Admin Dashboard](screenshots/admin-dashboard.png)
+
+### 💊 Manage Medicines
+
+![Manage Medicines](screenshots/manage-medicines.png)
+
+### 📦 Admin Orders
+
+![Admin Orders](screenshots/admin-orders.png)
+
+### ⚠️ Low Stock Alert
+
+![Low Stock Alert](screenshots/low-stock.png)
+
+
 ### Database
 
 - MySQL
